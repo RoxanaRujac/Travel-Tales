@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tales - Journals List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8d7f8;
+        }
+
+        .header {
+            background-color: #6a5acd;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #5a4abd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .page-title {
+            display: block;
+            width: 250px;
+            margin: 20px 0 30px 0;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px;
+            background-color: #6a5acd;
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn {
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid white;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #f8d7f8;
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .btn-edit:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+
+        .btn-delete {
+            background-color: #ffc107;
+            border-color: #ffc107;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .btn-primary {
+            background-color: #6a5acd;
+            border-color: #6a5acd;
+        }
+
+        .create-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .journals-container {
+            background-color: #6a5acd;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .journals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .journal-card {
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #F8D7F8FF;
+        }
+
+        .journal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .journal-content {
+            padding: 20px;
+        }
+
+        .journal-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #6a5acd;
+        }
+
+        .journal-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .journal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .journal-id {
+            font-size: 12px;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 0;
+            color: #6a5acd;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <a th:href="@{/journal}" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 8.5V16.5C20 17.3284 19.3284 18 18.5 18H5.5C4.67157 18 4 17.3284 4 16.5V8.5C4 7.67157 4.67157 7 5.5 7H18.5C19.3284 7 20 7.67157 20 8.5Z" stroke="white" stroke-width="2"/>
+                <path d="M8 7V18" stroke="white" stroke-width="2"/>
+                <path d="M12 7V18" stroke="white" stroke-width="2"/>
+                <path d="M16 7V18" stroke="white" stroke-width="2"/>
+                <path d="M4 11H20" stroke="white" stroke-width="2"/>
+                <path d="M4 15H20" stroke="white" stroke-width="2"/>
+            </svg>
+            <span class="logo-text">Travel Tales</span>
+        </a>
+    </div>
+    <div class="nav-links">
+        <a th:href="@{/journal}" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="4" width="16" height="16" rx="2" stroke="white" stroke-width="2"/>
+                <path d="M4 8H20" stroke="white" stroke-width="2"/>
+                <path d="M8 4V8" stroke="white" stroke-width="2"/>
+                <path d="M16 4V8" stroke="white" stroke-width="2"/>
+            </svg>
+            My diaries
+        </a>
+        <a href="#" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+                <path d="M20 19C20 22 16.418 22 12 22C7.582 22 4 22 4 19C4 16 7.582 14 12 14C16.418 14 20 16 20 19Z" stroke="white" stroke-width="2"/>
+            </svg>
+            Profile
+        </a>
+
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <div class="page-title">My Travel Journals</div>
+
+    <a th:href="@{/journal/save}" class="btn btn-primary create-btn">+ Create Journal</a>
+
+    <div class="journals-container">
+        <!-- If journals exist, show the grid -->
+        <div class="journals-grid" th:if="${!#lists.isEmpty(journals)}">
+            <div class="journal-card" th:each="journal : ${journals}">
+                <div class="journal-content">
+                    <div class="journal-id">ID: <span th:text="${journal.id}"></span></div>
+                    <div class="journal-title" th:text="${journal.title}">Journey to Paris</div>
+                    <div class="journal-description" th:text="${journal.description}">A wonderful two-week adventure exploring the streets of Paris, visiting museums, and enjoying the local cuisine.</div>
+                    <div class="journal-actions">
+                        <a class="btn btn-edit btn-sm" th:href="@{/journal/edit/{id}(id=${journal.id})}">Edit</a>
+                        <a class="btn btn-delete btn-sm"
+                           th:href="@{/journal/delete/{id}(id=${journal.id})}"
+                           onclick="return confirm('Are you sure you want to delete this journal?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- If no journals exist, show empty state -->
+        <div class="empty-state" th:if="${#lists.isEmpty(journals)}">
+            <div class="empty-state-icon">📔</div>
+            <div class="empty-state-message">You haven't created any travel journals yet</div>
+            <a th:href="@{/journal/create}" class="btn btn-primary">Create Your First Journal</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(event) {
+        if (!confirm('Are you sure you want to delete this journal?')) {
+            event.preventDefault();
+        }
+    }
+</script>
+
+</body>
+</html>

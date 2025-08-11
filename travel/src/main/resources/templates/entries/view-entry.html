@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tales - Entry Details</title>
+    <style>
+        /* Keeping existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8d7f8;
+        }
+
+        .header {
+            background-color: #6a5acd;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #5a4abd;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid white;
+            margin-top: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .page-title {
+            display: block;
+            width: 250px;
+            margin: 20px 0;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px;
+            background-color: #6a5acd;
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Entry specific styles */
+        .entry-header {
+            background-color: #6a5acd;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .entry-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .entry-meta {
+            font-size: 14px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .entry-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .entry-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .media-item {
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .media-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .media-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .map-container {
+            height: 300px;
+            background-color: #e9e9e9;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #6a5acd;
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <a th:href="@{/journal}" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 8.5V16.5C20 17.3284 19.3284 18 18.5 18H5.5C4.67157 18 4 17.3284 4 16.5V8.5C4 7.67157 4.67157 7 5.5 7H18.5C19.3284 7 20 7.67157 20 8.5Z" stroke="white" stroke-width="2"/>
+                <path d="M8 7V18" stroke="white" stroke-width="2"/>
+                <path d="M12 7V18" stroke="white" stroke-width="2"/>
+                <path d="M16 7V18" stroke="white" stroke-width="2"/>
+                <path d="M4 11H20" stroke="white" stroke-width="2"/>
+                <path d="M4 15H20" stroke="white" stroke-width="2"/>
+            </svg>
+            <span class="logo-text">Travel Tales</span>
+        </a>
+    </div>
+    <div class="nav-links">
+        <a th:href="@{/journal}" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="4" width="16" height="16" rx="2" stroke="white" stroke-width="2"/>
+                <path d="M4 8H20" stroke="white" stroke-width="2"/>
+                <path d="M8 4V8" stroke="white" stroke-width="2"/>
+                <path d="M16 4V8" stroke="white" stroke-width="2"/>
+            </svg>
+            My diaries
+        </a>
+        <a href="#" class="nav-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/>
+                <path d="M20 19C20 22 16.418 22 12 22C7.582 22 4 22 4 19C4 16 7.582 14 12 14C16.418 14 20 16 20 19Z" stroke="white" stroke-width="2"/>
+            </svg>
+            Profile
+        </a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <a th:href="@{/journal/edit/{id}(id=${journal.id})}" class="page-title">
+        <span th:text="${journal.title}">Journal Title</span>
+    </a>
+
+    <div class="entry-header">
+        <h1 class="entry-title" th:text="${entry.title}">Entry Title</h1>
+    </div>
+
+    <div class="entry-content" th:utext="${entry.content}">
+        Entry description goes here.
+    </div>
+
+    <div th:if="${not #lists.isEmpty(entry.mediaAttachments)}">
+        <h2 class="section-title">Photos</h2>
+        <div class="media-gallery">
+            <div class="media-item" th:each="media : ${entry.mediaAttachments}">
+                <img th:if="${media.type.name() == 'IMAGE'}" th:src="${media.url}" class="media-img" alt="Travel photo">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

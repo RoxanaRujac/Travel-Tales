@@ -1,0 +1,353 @@
+/* Revised Create Journal Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.create-journal-container {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8d7f8;
+  padding: 50px 0;
+  color: #333;
+}
+
+/* Header Styling */
+.journal-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.journal-header h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #6a5acd;
+  margin-bottom: 10px;
+}
+
+.journal-header p {
+  font-size: 18px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Form Container */
+.journal-form-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.journal-form {
+  background-color: #6a5acd;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(106, 90, 205, 0.1);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+/* Form Sections */
+.form-section {
+  padding: 30px;
+  border-bottom: 1px solid #f0f0f5;
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 25px 0;
+  display: flex;
+  align-items: center;
+}
+
+.section-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba(106, 90, 205, 0.2);
+  margin-left: 15px;
+}
+
+/* Form Groups */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid #e1e1e8;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: white;
+  box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.1);
+  outline: none;
+}
+
+.form-textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Cover Image Section */
+.cover-image-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.cover-preview {
+  flex: 1;
+  min-width: 300px;
+  height: 220px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #f9f9fd;
+  border: 2px dashed #e1e1e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease;
+}
+
+.empty-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  color: #999;
+  text-align: center;
+  padding: 20px;
+}
+
+.empty-preview svg {
+  opacity: 0.6;
+}
+
+.empty-preview p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.upload-controls {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.upload-button {
+  display: inline-block;
+  background-color: #5a4abd;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(106, 90, 205, 0.3);
+}
+
+.upload-button:hover {
+  background-color: #f8d7f8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(106, 90, 205, 0.4);
+}
+
+.file-input {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #e74c3c;
+  border: 2px solid #e74c3c;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.remove-button:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Form Actions */
+.form-actions {
+  padding: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  background-color: #f9f9fd;
+  border-top: 1px solid #f0f0f5;
+}
+
+.cancel-button {
+  background-color: white;
+  color: #666;
+  border: 2px solid #e1e1e8;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cancel-button:hover {
+  background-color: #f5f5f5;
+}
+
+.save-button {
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(106, 90, 205, 0.3);
+  font-family: 'Poppins', sans-serif;
+}
+
+.save-button:hover {
+  background-color: #5a4abd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(106, 90, 205, 0.4);
+}
+
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Error message */
+.error-message {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 0 auto 30px;
+  max-width: 900px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 4px solid #e74c3c;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .create-journal-container {
+    padding: 30px 0;
+  }
+  
+  .journal-header h1 {
+    font-size: 28px;
+  }
+  
+  .journal-header p {
+    font-size: 16px;
+  }
+  
+  .form-section {
+    padding: 25px 20px;
+  }
+  
+  .cover-preview {
+    min-width: 100%;
+    height: 180px;
+  }
+  
+  .form-actions {
+    flex-direction: column-reverse;
+    padding: 20px;
+  }
+  
+  .cancel-button,
+  .save-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .section-title::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-journal-container {
+    padding: 20px 0;
+  }
+  
+  .journal-header h1 {
+    font-size: 24px;
+  }
+  
+  .journal-form {
+    border-radius: 15px;
+  }
+  
+  .form-section {
+    padding: 20px 15px;
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .cover-preview {
+    height: 150px;
+  }
+}
